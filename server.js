@@ -85,5 +85,49 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize('teste' , 'gui' ,'guigui167' , {
     host: "localhost" ,
     dialect: "mysql"
-
 } )
+// Para ver se o servidor está funcionando, utilize esse método
+sequelize.authenticate().then(
+    ()=>{console.log("Conectado com Sucesso")}
+).catch( (err)=>{
+    console.log("Deu errado" + err)
+})
+//Estude mais sobre o .then e o .catch
+
+//Vamos criar um model para postagens e para usuários
+// o sequelize.define tem parâmetros : nome e um JSON objeto que constitui suas informações
+const Postagem = sequelize.define('postagens' , {
+    titulo : {
+        type: Sequelize.STRING ,  //esse possui um limite de caracteres
+    },
+    conteudo: {
+        type: Sequelize.TEXT   // esse não tem um limite de caracteres
+    }
+})
+// esses dois campos criados são LINHAS (ROWS) da TABELA criada!
+
+
+Postagem.sync({force: true}) // Para gerar a tabela, e o force serve para ter mais certeza da sua geração
+// se você rodar o arquivo , verá isso: 
+//Executing (default): CREATE TABLE IF NOT EXISTS `postagens` (`id` INTEGER NOT NULL auto_increment , `titulo` VARCHAR(255), `conteudo` TEXT, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+
+// vamos criar outra tabela com duas linhas, idade e nome
+const Usuario = sequelize.define('usuarios' , {
+    nome: {
+        type: Sequelize.STRING
+    },
+
+    idade: { 
+        type : Sequelize.INTEGER
+    }, 
+})
+
+Usuario.sync({force: true})
+
+
+//Como inserir DADOS nas tabelas criadas??
+
+Postagem.create({
+    titulo : "NOVO TITULO" ,
+    conteudo: "QUALQUER COISA"
+})
