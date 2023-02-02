@@ -125,7 +125,7 @@ const Usuario = sequelize.define('usuarios' , {
 Usuario.sync({force: true})
 
 
-//Como inserir DADOS nas tabelas criadas??
+//Como inserir DADOS nas tabelas criadas?? -> está em uma das partes do usandohandle.js
 
 Postagem.create({
     titulo : "NOVO TITULO" ,
