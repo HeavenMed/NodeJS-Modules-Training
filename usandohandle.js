@@ -78,7 +78,17 @@ app.post('/add' , (req , res) => {
     })
 })
 
+//Como é o esqueleto do express?
+// Faça um arquivo Js PRIMÁRIO
+// Crie uma pasta para os models 
+// crie um pasta views, com outra pasta layouts com um arquivo main.handlebars
 
+
+//Como usar o rooter do express?
+//const express = require('express')
+//const router = express.Router()
+// e depois você precisa exportar esse router
+// module.exports = router
 
 
 app.listen(8001 , ()=>{
